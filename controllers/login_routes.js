@@ -18,7 +18,7 @@ var controller = function(app, model) {
             salt: cryptoRandomString(10),
             algorithm: "sha256",
         };
-        newPass.hash = crypto.createHash("sha256").update(newPass.salt + req.body.password).digest('hex');
+        newPass.hash = crypto.createHash("sha256").update(newPass.salt + req.body.password).digest("hex");
 
         //new user object
         const newUser = {
@@ -32,14 +32,24 @@ var controller = function(app, model) {
             }
         };
 
-        db.user.create(newUser, {include: [{association: User.Password}]});
+        db.user.create(newUser, {include: [{association: db.user.hasOne(db.password)}]}).then(() => res.json("true"));;
     });
 
     //put will cover login on a (hopefully) existing user
     // we'll expect the username and password in the post body
     // we'll deploy on https so sending password won't hurt
-    app.put("api/login", (req, res) => {
-        db.user.getOne({username: req.body.username}).getpassword().then(password => console.log(password));
+    app.put("/api/login", (req, res) => {
+        db.user.findOne({username: req.body.username, include:[{model: db.password}]})
+            .then(result => {
+                const passObj = JSON.parse(result.password.pass_obj);
+                if (passObj.hash === crypto.createHash("sha256").update(passObj.salt + req.body.password).digest("hex")) {
+                    res.json("true");
+                }
+                else {
+                    res.json("false");
+                }
+            });
+   
     });
     return app;
 };
