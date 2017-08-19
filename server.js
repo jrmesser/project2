@@ -1,8 +1,9 @@
-var db = require("./models");
 var express = require("express");
 var bodyParser = require("body-parser");
 
 var app = express();
+
+var db = require("./models");
 
 var PORT = process.env.PORT || 3000;
 
@@ -11,6 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+app.use(express.static("public"));
+
+require("./routes/html-routes.js")(app);
+require("./routes/user-api-routes.js")(app);
+require("./routes/url-api-routes.js")(app);
 require("./controllers/login_routes.js")(app);
 
 db.sequelize.sync({force: true})
