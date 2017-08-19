@@ -22,7 +22,7 @@ module.exports = function(app) {
     });
   });
 
-  app.Url("/api/urls", function(req, res) {
+  app.post("/api/urls", function(req, res) {
     db.User.create(req.body).then(function(dbUser) {
       res.json(dbUser);
     });
