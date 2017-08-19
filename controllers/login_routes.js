@@ -5,7 +5,7 @@ const cryptoRandomString = require("crypto-random-string");
 var controller = function(app, model) {
 
     app.get("/api/login", (req, res) => {
-        console.log(model); 
+        res.send("nothing to get here, buddy");
     });
     //post will cover creating a new user and password
     // we'd expect user data as well as the password in the post body
@@ -38,7 +38,7 @@ var controller = function(app, model) {
     // we'll expect the username and password in the post body
     // we'll deploy on https so sending password won't hurt
     app.put("/api/login", (req, res) => {
-        db.user.findOne({username: req.body.username, include:[{model: db.password}]})
+        db.user.findOne({username: req.body.username, include:[{model: db.password}]}, {where: {username: req.body.username}})
             .then(result => {
                 const passObj = JSON.parse(result.password.pass_obj);
                 if (result.username===req.body.username && passObj.hash === crypto.createHash("sha256").update(passObj.salt + req.body.password).digest("hex")) {

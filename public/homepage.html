@@ -52,19 +52,21 @@ body, html {height: 100%}
   <div class="w3-modal-content w3-animate-zoom">
     <div class="w3-container w3-black">
       <span onclick="document.getElementById('contact').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
-      <h1>Sign- In</h1>
+      <h1>Sign-In</h1>
     </div>
     <div class="w3-container">
-      <p>:</p>
-      <form action="/action_page.php" target="_blank">
-        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
-        <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="Email" required name="Email"></p>
+      <p id="message"></p>
+      <form action="javascript:login()">
+        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Username" id="username"></p>
+        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Password" required name="Password" id="password"></p>
         
-        <p><button class="w3-button" type="submit">I ACCEPT</button></p>
+        <p><button class="w3-button" type="submit" id="login">Log In</button></p>
       </form>
     </div>
   </div>
 </div>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+ <script src="js/login.js"></script>
 </html>
