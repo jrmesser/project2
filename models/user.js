@@ -3,6 +3,12 @@ module.exports = function(sequelize, DataTypes) {
         username: {
             type: DataTypes.STRING
         },
+        sessionId: {
+            type: DataTypes.STRING
+        },
+        email: {
+            type: DataTypes.STRING
+        },
         first_name: {
             type: DataTypes.STRING
         },
@@ -19,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
 
     User.associate = function(models) {
         User.hasOne(models.password, {
-            onDelete: cascade
+            onDelete: "cascade"
         });
     };
 
