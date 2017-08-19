@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+n<!DOCTYPE html>
 <html>
 <title>project2</title>
 <meta charset="UTF-8">
@@ -28,45 +28,91 @@ body, html {height: 100%}
     <p></p>
   </div>
   <div class="w3-display-topleft w3-container w3-xlarge">
-    <p><button onclick="document.getElementById('menu').style.display='block'" class="w3-button w3-black"></button></p>
-    <p><button onclick="document.getElementById('contact').style.display='block'" class="w3-button w3-black">info</button></p>
+    <p><button onclick="document.getElementById('sign_in').style.display='block'" class="w3-button w3-black">Sign In</button></p>
+    <p><button onclick="document.getElementById('sign_up').style.display='block'" class="w3-button w3-black">Sign Up</button></p>
   </div>
   <div class="w3-display-bottomleft w3-container">
-    <p class="w3-xlarge"></p>
-    <p class="w3-large"></p>
-    <p> <a href="https://www.w3schools.com/w3css/default.asp" target="_blank"></a></p>
+      <p class="w3-xlarge"></p>
+      <p class="w3-large"></p>
+      <p> <a href="https://www.w3schools.com/w3css/default.asp" target="_blank"></a></p>
   </div>
 </div>
 
 <!-- Modal -->
-<div id="menu" class="w3-modal">
-  <div class="w3-modal-content w3-animate-zoom">
-    <div class="w3-container w3-black w3-display-container">
-     
+<div id="sign_up" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom">
+        <div class="w3-container w3-black w3-display-container">
+            <span onclick="document.getElementById('sign_up').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+
+            <h1>Sign Up</h1>
+            <form action="javascript:createUser()">
+                <div class="form-group">
+                    <label for="InputUsername">Username</label>
+                    <input type="text" class="w3-input w3-padding-16 w3-border"  id="InputUsername" aria-describedby="usernameHelp" placeholder="Enter username" >
+                    <small id="usernameHelp" class="form-text text-muted" >A unique username.</small>
+                </div>
+                <div class="form-group">
+                    <label for="InputEmail">Email address</label>
+                    <input type="email" class="w3-input w3-padding-16 w3-border" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="InputPassword1">Password</label>
+                    <input type="password" class="w3-input w3-padding-16 w3-border" id="InputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="InputPassword2">Retype Password</label>
+                    <input type="password" class="w3-input w3-padding-16 w3-border" id="InputPassword2" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="InputFirstName">First Name</label>
+                    <input type="first_name" class="w3-input w3-padding-16 w3-border" id="InputFirstName" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <label for="InputLastName">Last Name</label>
+                    <input type="last_name" class="w3-input w3-padding-16 w3-border" id="InputLastName" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <label for="Inputstate">State</label>
+                    <input type="state" class="w3-input w3-padding-16 w3-border" id="InputState" placeholder="State">
+                </div>
+                <div class="form-group">
+                    <label for="Country">Country</label>
+                    <input type="country" class="w3-input w3-padding-16 w3-border" id="InputCountry" placeholder="Country">
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox">I agree to whatever terms this website comes up with. 
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+            </form>
+
+        </div>
     </div>
-  </div>
 </div>
 
 <!--Sign-in Modal -->
-<div id="contact" class="w3-modal">
-  <div class="w3-modal-content w3-animate-zoom">
-    <div class="w3-container w3-black">
-      <span onclick="document.getElementById('contact').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
-      <h1>Sign-In</h1>
+<div id="sign_in" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom">
+        <div class="w3-container w3-black">
+            <span onclick="document.getElementById('sign_in').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+            <h1>Sign-In</h1>
+        </div>
+        <div class="w3-container">
+            <p id="message"></p>
+            <form action="javascript:login()">
+                <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Username" id="username"></p>
+                <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Password" required name="Password" id="password"></p>
+                
+                <p><button class="w3-button" type="submit" id="login">Log In</button></p>
+            </form>
+        </div>
     </div>
-    <div class="w3-container">
-      <p id="message"></p>
-      <form action="javascript:login()">
-        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Username" id="username"></p>
-        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Password" required name="Password" id="password"></p>
-        
-        <p><button class="w3-button" type="submit" id="login">Log In</button></p>
-      </form>
-    </div>
-  </div>
 </div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
- <script src="js/login.js"></script>
+<script src="js/login.js"></script>
+<script src="js/createUser.js"></script>
 </html>
