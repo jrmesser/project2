@@ -1,6 +1,5 @@
 var db = require("../models");
 const crypto = require("crypto");
-
 const cryptoRandomString = require("crypto-random-string");
 
 var controller = function(app, model) {
@@ -42,12 +41,19 @@ var controller = function(app, model) {
         db.user.findOne({username: req.body.username, include:[{model: db.password}]})
             .then(result => {
                 const passObj = JSON.parse(result.password.pass_obj);
-                if (passObj.hash === crypto.createHash("sha256").update(passObj.salt + req.body.password).digest("hex")) {
-                    res.json("true");
+                if (result.username===req.body.username && passObj.hash === crypto.createHash("sha256").update(passObj.salt + req.body.password).digest("hex")) {
+                    // create a session ID from current datetime, some salt, and the username
+                    const sessionId = crypto.createHash("sha256").update(cryptoRandomString(10) + req.body.username + Date() + cryptoRandomString(10)).digest("hex");
+                    // store that as the session ID of the user
+                    db.user.update({sessionId: sessionId}, {where: {username: req.body.username}})
+                        .then(res.json({sessionId: sessionId}));
                 }
                 else {
-                    res.json("false");
+                    res.status(403).json("username or password incorrect");
                 }
+            })
+            .catch(error => {
+                res.status(403).json("username or password incorrect");
             });
    
     });

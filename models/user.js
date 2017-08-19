@@ -3,6 +3,12 @@ module.exports = function(sequelize, DataTypes) {
         username: {
             type: DataTypes.STRING
         },
+        sessionId: {
+            type: DataTypes.STRING
+        },
+        email: {
+            type: DataTypes.STRING
+        },
         first_name: {
             type: DataTypes.STRING
         },
