@@ -11,7 +11,6 @@ var controller = function(app, model) {
     // we'd expect user data as well as the password in the post body
     // we'll deploy on https so sending password won't hurt
     app.post("/api/login", (req, res) => {
-        console.log(req.body);
         //new password object: {salt: "", alg: "sha256", hash: ""}
         const newPass = {
             salt: cryptoRandomString(10),
