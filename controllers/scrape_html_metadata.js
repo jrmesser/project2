@@ -6,18 +6,12 @@ module.exports = (url, callback) => {
     scrape(url).then(metadata => {
         var urlObject = {url: url};
         urlObject.content_type = metadata.openGraph.type || "Website";
-        urlObject.length = metadata.twitter.data1 ? parseInt(metadata.twitter.data1) : 0;
         urlObject.category = metadata.jsonLd["@type"] || "Web page";
-        if (urlObject.length === 0 ) {
-            getLength(url, function(length) {
-                urlObject.length = length;
-                console.log(urlObject);
-            });
-        }
-        else {
-            callback(urlObject);
-        }
 
+        getLength(url, function(length) {
+            urlObject.length = length;
+            console.log(urlObject);
+        });
     });
 };
 
