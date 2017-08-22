@@ -1,0 +1,5 @@
+# this gitignore ignores the config folder and all files in it so we don't check in our connection info
+config/**
+node_modules/**
+package-lock.json
+*.DS_Store
