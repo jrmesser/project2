@@ -1,41 +1,35 @@
+
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/api/urls", function(req, res) {
-    // 1. Add a join to include all of each User's Urls
-    db.Url.findAll({
-      include: [db.Url]
-    }).then(function(dbUser) {
-      res.json(dbUser);
-    });
-  });
 
-  app.get("/api/urls/:id", function(req, res) {
-    // 2; Add a join to include all of the User's Urls here
-    db.User.findOne({
-      include: [db.Url],
+// GET route to get session ID
+  app.get("/api/urls/:pw", function(req, res) {
+    db.user.findAll({
+      include: [db.url],
         where: {
-          id: req.params.id
+          sessionId: req.params.pw
         }
     }).then(function(dbUser) {
       res.json(dbUser);
     });
   });
 
-  app.post("/api/urls", function(req, res) {
+// POST route to get all the URLs for the session ID
+  app.post("/api/urls/:pw", function(req, res) {
     db.User.create(req.body).then(function(dbUser) {
       res.json(dbUser);
     });
   });
 
-  app.delete("/api/urls/:id", function(req, res) {
-    db.User.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbUser) {
-      res.json(dbUser);
-    });
-  });
+  // app.delete("/api/urls/:id", function(req, res) {
+  //   db.User.destroy({
+  //     where: {
+  //       id: req.params.id
+  //     }
+  //   }).then(function(dbUser) {
+  //     res.json(dbUser);
+  //   });
+  // });
 
 };

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
-<title>project2</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="homepage.css">
+    <title>project2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="homepage.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
 body,h1,h5 {font-family: "Raleway", sans-serif}
@@ -13,20 +14,78 @@ body, html {height: 100%}
     min-height: 100%;
     background-position: center;
     background-size: cover;
+    z-index: 0;
 }
 </style>
 <body>
+
+<!-- Sidebar (hidden by default) -->
+
+
+
+<!-- Navbar top -->
+
 <div class="w3-top">
-  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-    <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+  <div class="w3-white w3-xlarge" style="max-width:100%;margin:auto; z-index: 1;">
+
+<div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
     <div class="w3-right w3-padding-16">#</div>
     <div class="w3-center w3-padding-16">FrontPage</div>
   </div>
 </div>
+
+
+<!-- background image with articles preview -->
 <div class="bgimg w3-display-container w3-text-white">
-  <div class="w3-display-middle w3-jumbo">
-    <p></p>
-  </div>
+
+<!-- Article preview 1-->
+
+ <div class="w3-container w3-card-2 w3-white w3-round w3-margin" ><br>
+        <hr class="w3-clear">
+        <p>article/video title</p>
+        <p>content </p>
+
+        <button type="button" class="w3-left w3-button w3-theme-d1  w3-margin-bottom"> &nbsp; minutes :</button> 
+         
+        <button onclick="document.getElementById('view_now').style.display='block'" class="w3-right w3-button w3-theme-d2 w3-margin-bottom">View Now</button></p>
+
+        <button type="button" class="w3-right w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;View later</button> 
+</div>
+
+
+<!-- Article preview 2-->
+
+<div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
+        <hr class="w3-clear">
+        <p>article/video title</p>
+        <p>content </p>
+
+        <button type="button" class="w3-left w3-button w3-theme-d1  w3-margin-bottom"> &nbsp; minutes :</button> 
+         
+        <button onclick="document.getElementById('view_now').style.display='block'" class="w3-right w3-button w3-theme-d2 w3-margin-bottom">View Now</button></p>
+
+        <button type="button" class="w3-right w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;View later</button> 
+</div>
+
+<!-- Article preview 3-->
+
+<div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
+        <hr class="w3-clear">
+        <p>article/video title</p>
+        <p>content </p>
+
+        <button type="button" class="w3-left w3-button w3-theme-d1  w3-margin-bottom"> &nbsp; minutes :</button> 
+
+        <button onclick="document.getElementById('view_now').style.display='block'" class="w3-right w3-button w3-theme-d2 w3-margin-bottom">View Now</button></p>
+
+        <button type="button" class="w3-right w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;View later</button> 
+</div>
+ 
+
+</div>
+
+
+ <!-- Sign In & Sign Up buttons --> 
   <div class="w3-display-topleft w3-container w3-xlarge">
     <p><button onclick="document.getElementById('sign_in').style.display='block'" class="w3-button w3-black">Sign In</button></p>
     <p><button onclick="document.getElementById('sign_up').style.display='block'" class="w3-button w3-black">Sign Up</button></p>
@@ -38,31 +97,59 @@ body, html {height: 100%}
   </div>
 </div>
 
-<!-- Modal -->
+
+<!-- url modal -->
+<div id="url-container" class="w3-modal">
+    <ul id="urls">
+
+    </ul>
+</div>
+
+<!-- Article Pop-Up Modal -->
+<div id="view_now" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom">
+        <div class="w3-container w3-black w3-display-container">
+            <span onclick="document.getElementById('view_now').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+
+            
+            
+                <div class="form-group">
+                    <label for="InputUsername">.</label>
+                    <input type="text" class="w3-input w3-padding-16 w3-border"  id="InputUsername" aria-describedby="usernameHelp" placeholder="Full Article/ video" >
+                    <small id="usernameHelp" class="form-text text-muted" >.</small>
+                </div>
+        </div>
+    </div>
+</div>    
+
+
+<!-- Sign-Up Modal -->
+
 <div id="sign_up" class="w3-modal">
     <div class="w3-modal-content w3-animate-zoom">
         <div class="w3-container w3-black w3-display-container">
             <span onclick="document.getElementById('sign_up').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
 
             <h1>Sign Up</h1>
+            <p id="sign_up_error_message" style="color: red"></p>
             <form action="javascript:createUser()">
                 <div class="form-group">
                     <label for="InputUsername">Username</label>
-                    <input type="text" class="w3-input w3-padding-16 w3-border"  id="InputUsername" aria-describedby="usernameHelp" placeholder="Enter username" >
+                    <input type="text" class="w3-input w3-padding-16 w3-border"  id="InputUsername" aria-describedby="usernameHelp" placeholder="Enter username" required>
                     <small id="usernameHelp" class="form-text text-muted" >A unique username.</small>
                 </div>
                 <div class="form-group">
                     <label for="InputEmail">Email address</label>
-                    <input type="email" class="w3-input w3-padding-16 w3-border" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" class="w3-input w3-padding-16 w3-border" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                     <label for="InputPassword1">Password</label>
-                    <input type="password" class="w3-input w3-padding-16 w3-border" id="InputPassword1" placeholder="Password">
+                    <input type="password" class="w3-input w3-padding-16 w3-border" id="InputPassword1" placeholder="Password" required>
                 </div>
                 <div class="form-group">
                     <label for="InputPassword2">Retype Password</label>
-                    <input type="password" class="w3-input w3-padding-16 w3-border" id="InputPassword2" placeholder="Password">
+                    <input type="password" class="w3-input w3-padding-16 w3-border" id="InputPassword2" placeholder="Password" required>
                 </div>
                 <div class="form-group">
                     <label for="InputFirstName">First Name</label>
@@ -103,8 +190,7 @@ body, html {height: 100%}
             <p id="message"></p>
             <form action="javascript:login()">
                 <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Username" id="username"></p>
-                <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Password" required name="Password" id="password"></p>
-                
+                <p><input class="w3-input w3-padding-16 w3-border" type="password" placeholder="Password" required name="Password" id="password"></p>
                 <p><button class="w3-button" type="submit" id="login">Log In</button></p>
             </form>
         </div>
@@ -115,4 +201,5 @@ body, html {height: 100%}
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="js/login.js"></script>
 <script src="js/createUser.js"></script>
+<script src="js/loadPage.js"></script>
 </html>
