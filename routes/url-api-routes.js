@@ -5,8 +5,8 @@ module.exports = function(app) {
 
 // GET route to get session ID
   app.get("/api/urls/:pw", function(req, res) {
-    db.User.findAll({
-      include: [db.Url],
+    db.user.findAll({
+      include: [db.url],
         where: {
           sessionId: req.params.pw
         }
