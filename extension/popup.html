@@ -32,14 +32,16 @@
   <body>
       <h1>Save to Frontpage</h1>
       <form action="http://www.google.com" method="GET">
-          URL:<input type="text"  name="url" id="url"><br>
-          Content Type:<input type="text" name="content_type"><br>
-          Length:<input type="text" name="length"><br>
-          Category:<input type="text" name="category"><br>
+          URL: <input type="text"  name="url" id="url"><br>
+          Content Type: <select id="content_type">
+          <option value="article">Article</option>
+          <option value="Audio">Audio</option>
+          <option value="Video">Video</option>
+          </select><br>
+          Length (minutes): <input type="number" name="length"><br>
+          Category: <input type="text" name="category"><br>
           <input type="submit" value="Submit">
       </form>
-    <div id="status"></div>
-    <img id="image-result" hidden>
   </body>
 </html>
 
