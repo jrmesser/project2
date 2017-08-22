@@ -6,7 +6,7 @@ module.exports = function(app) {
 // GET route to get session ID
   app.get("/api/urls/:pw", function(req, res) {
     db.Url.findAll({
-      include: [db.url],
+      include: [db.user],
         where: {
           sessionId: req.params.pw
         }
@@ -35,7 +35,7 @@ module.exports = function(app) {
   // GET route for filtering by length
     app.get("/api/urls/:pw/length", function(req, res) {
       db.url.findAll({
-        include: [db.url],
+        include: [db.user],
           where: {
             db.user.sessionId: req.params.pw
             db.url.length: {
