@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <title>project2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="homepage.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h5 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+    background-image: url('http://theartmad.com/wp-content/uploads/Grey-Background-Image-4.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+}
+</style>
+<body class="bgimg">
+
+
+<!-- Navbar top -->
+
+<div class="w3-top w3-border-bottom w3-white">
+  <div class="w3-white w3-xlarge" style="max-width:100%;margin:auto; z-index: 1;">
+
+<div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+    <div class="w3-display-topmiddle w3-padding-16">FrontPage</div>
+  </div>
+</div>
+
+
+ <!-- Sign In & Sign Up buttons --> 
+  <div class="w3-display-middle w3-container w3-xlarge w3-border w3-round-xlarge w3-white">
+      <p class="w3-padding-large">
+          <button onclick="document.getElementById('sign_in').style.display='block'" class="w3-button w3-black w3-round-xlarge w3-margin">Sign In</button>
+          <button onclick="document.getElementById('sign_up').style.display='block'" class="w3-button w3-black w3-round-xlarge w3-margin">Sign Up</button>
+      </p>
+  </div>
+</div>
+
+<!-- Sign-Up Modal -->
+
+        <div id="sign_up" class="w3-modal">
+            <div class="w3-modal-content w3-animate-zoom w3-round">
+                <div class="w3-container w3-black w3-display-container w3-round">
+                    <span onclick="document.getElementById('sign_up').style.display='none'" class="w3-button w3-display-topright w3-large w3-round">x</span>
+
+                    <h1>Sign Up</h1>
+                </div>
+                <div class="w3-container" >
+                    <p id="sign_up_error_message" style="color: red"></p>
+                    <form action="javascript:createUser()">
+                        <div class="form-group">
+                            <input type="text" class="w3-input w3-padding-16 w3-border w3-round"  id="InputUsername" aria-describedby="usernameHelp" placeholder="Enter username" required>
+                            <small id="usernameHelp" class="form-text text-muted" >A unique username.</small>
+                            <input type="email" class="w3-input w3-padding-16 w3-border w3-round" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <input type="password" class="w3-input w3-padding-16 w3-border w3-round" id="InputPassword1" placeholder="Password" required>
+                            <small id="passwordHelp" class="form-text text-muted" >A secure password.</small>
+                            <input type="password" class="w3-input w3-padding-16 w3-border w3-round" id="InputPassword2" placeholder="Password" required>
+                            <small id="password2Help" class="form-text text-muted" >Re-enter your password.</small>
+                            <input type="first_name" class="w3-input w3-padding-16 w3-border w3-round" id="InputFirstName" placeholder="First Name">
+                            <small id="firstnameHelp" class="form-text text-muted" >Your first name.</small>
+                            <input type="last_name" class="w3-input w3-padding-16 w3-border w3-round" id="InputLastName" placeholder="Last Name">
+                            <small id="lastnameHelp" class="form-text text-muted" >Your last name.</small>
+                            <input type="state" class="w3-input w3-padding-16 w3-border w3-round" id="InputState" placeholder="State">
+                            <small id="stateHelp" class="form-text text-muted" >Your state.</small>
+                            <input type="country" class="w3-input w3-padding-16 w3-border w3-round" id="InputCountry" placeholder="Country">
+                            <small id="countryHelp" class="form-text text-muted" >Your country.</small>
+                            <br>
+                            <label class="form-check-label">
+                                <input type="checkbox" required>I agree to whatever terms this website comes up with. 
+                            </label>
+                        </div>
+                        <button type="submit" class="w3-button w3-round" id="submit">Submit</button>
+                        <br>
+                        <br>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Sign-in Modal -->
+<div id="sign_in" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom w3-round">
+        <div class="w3-container w3-black w3-round">
+            <span onclick="document.getElementById('sign_in').style.display='none'" class="w3-button w3-display-topright w3-large w3-round">x</span>
+            <h1>Sign In</h1>
+        </div>
+        <div class="w3-container">
+            <p id="message"></p>
+            <form action="javascript:login()">
+                <p><input class="w3-input w3-padding-16 w3-border w3-round" type="text" placeholder="Name" required name="Username" id="username"></p>
+                <p><input class="w3-input w3-padding-16 w3-border w3-round" type="password" placeholder="Password" required name="Password" id="password"></p>
+                <p><button class="w3-button w3-round" type="submit" id="login">Log In</button></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="js/login.js"></script>
+<script src="js/createUser.js"></script>
+</html>
