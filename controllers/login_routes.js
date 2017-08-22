@@ -54,7 +54,7 @@ var controller = function(app, model) {
             .catch(error => {
                 res.status(403).json("username or password incorrect");
             });
-   
+
     });
     return app;
 };
