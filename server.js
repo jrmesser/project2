@@ -17,7 +17,6 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("public"));
 
 require("./routes/html-routes.js")(app);
-require("./routes/user-api-routes.js")(app);
 require("./routes/url-api-routes.js")(app);
 require("./controllers/login_routes.js")(app);
 
