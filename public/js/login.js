@@ -11,6 +11,8 @@ const login = function() {
         .done((response) => {
             if (response.sessionId) {
                 document.cookie = `sessionId= ${response.sessionId}; path=/`;
+                $("#sign_in").css("display", "none");
+                loadPage(response.sessionId);
             } else {
                 $("#message").innerHtml = "Username or Password Incorrect";
             }
