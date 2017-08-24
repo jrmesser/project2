@@ -40,9 +40,10 @@ module.exports = function(app) {
             sessionId: req.params.pw,
             length: {
               $lt: {
-              req.params.length
+              length
             }
           }
+        }
       }).then(function(dbUser) {
         res.json(dbUser);
       });
