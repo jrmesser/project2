@@ -20,8 +20,14 @@
     "body-parser": "^1.17.2",
     "crypto-random-string": "^1.0.0",
     "express": "^4.15.4",
+    "html-metadata": "^1.6.3",
+    "html-word-count": "^2.0.0",
     "mysql": "^2.14.1",
     "mysql2": "^1.4.0",
+    "request": "^2.81.0",
     "sequelize": "^4.4.10"
+  },
+  "devDependencies": {
+    "webpack": "^3.5.5"
   }
 }
