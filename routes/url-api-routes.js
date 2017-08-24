@@ -37,20 +37,21 @@ module.exports = function(app) {
       db.url.findAll({
         include: [db.user],
           where: {
-            db.user.sessionId: req.params.pw
-            db.url.length: {
-              lt: {
-              req.params.length
+            sessionId: req.params.pw,
+            length: {
+              $lt: {
+              length
             }
           }
-      }).then(function(dbUser) {
+      }
+    }).then(function(dbUser) {
         res.json(dbUser);
       });
     });
 
   // POST route to get all the URLs for the session ID and length
       app.post("/api/urls/:pw/:length", function(req, res) {
-        db.User.create(req.body).then(function(dbUser) {
+        db.user.create(req.body).then(function(dbUser) {
           res.json(dbUser);
         });
       });
