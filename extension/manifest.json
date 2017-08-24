@@ -10,7 +10,8 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "activeTab",
+      "activeTab",
+      "pageCapture",
       "https://ajax.googleapis.com/",
       "cookies",
       "http://localhost:3000/"
