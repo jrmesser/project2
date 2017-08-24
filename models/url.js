@@ -18,11 +18,12 @@ module.exports = function(sequelize, DataTypes) {
         },
         deleted: {
             type: DataTypes.BOOLEAN
-        },
-        user_id: {
-            type: DataTypes.INTEGER
         }
     });
+
+    Url.associate = function(models) {
+        Url.belongsTo(models.user);
+    };
 
     return Url;
 };
