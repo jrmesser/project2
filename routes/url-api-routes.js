@@ -37,7 +37,7 @@ module.exports = function(app) {
       db.url.findAll({
         include: [db.url],
           where: {
-            db.user.sessionId: req.params.pw
+            sessionId: req.params.pw
             db.url.length: {
               lt: {
               req.params.length
