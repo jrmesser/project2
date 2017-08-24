@@ -27,18 +27,18 @@
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
-    <script src="popup.js"></script>
+    <script src="bundle.js"></script>
   </head>
-  <body>
+  <body style="width: 500px">
       <h1>Save to Frontpage</h1>
       <form action="http://www.google.com" method="GET">
-          URL: <input type="text"  name="url" id="url"><br>
-          Content Type: <select id="content_type">
+          URL: <input type="text"  name="url" id="url" style="width: 90%"><br>
+          Content Type: <select id="content_type" style="width: 25%">
           <option value="article">Article</option>
           <option value="Audio">Audio</option>
           <option value="Video">Video</option>
-          </select><br>
-          Length (minutes): <input type="number" name="length"><br>
+          </select>
+          Length (minutes): <input type="number" name="length" style="width: 25%"><br>
           Category: <input type="text" name="category"><br>
           <input type="submit" value="Submit">
       </form>
