@@ -17,7 +17,7 @@ const seedFunc = () => {
         category: "Philosophy",
         archived: false,
         deleted: false,
-        user_id: 1
+        userId: 1
     };
 
     //new user object
@@ -39,7 +39,11 @@ const seedFunc = () => {
         }]
     });
 
-    db.url.create(newUrl);
+    db.url.create(newUrl, {
+        include: [{
+            association: db.url.belongsTo(db.user)
+        }]
+    });
 
 };
 module.exports = seedFunc;
