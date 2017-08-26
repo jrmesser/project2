@@ -12,6 +12,19 @@ module.exports = function(app) {
       });
   });
 
+// GET route for filtering by length
+    app.get("/api/urls/:pw/:length", function(req, res) {
+        db.user.findAll({
+            include: [{model: db.url,
+                       where: {length: {$lte: req.params.length}}
+                      }],
+            where: {sessionId: req.params.pw}
+        }).then(function(dbUser) {
+            res.json(dbUser);
+        });
+    });
+
+
 // POST route to get all the URLs for the session ID
   app.post("/api/urls/:pw", function(req, res) {
     db.url.create(req.body).then(function(dbUser) {
@@ -29,17 +42,6 @@ module.exports = function(app) {
   //   });
   // });
 
-  // GET route for filtering by length
-    app.get("/api/urls/:pw/:length", function(req, res) {
-      db.url.findAll({
-          include: [{model: db.url}],
-          where: {sessionId: req.params.pw,
-                  length: {$lt: req.params.length}
-                 }
-      }).then(function(dbUser) {
-        res.json(dbUser);
-      });
-    });
 
   // POST route to get all the URLs for thex session ID and length
       app.post("/api/urls/:pw/:length", function(req, res) {
