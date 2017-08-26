@@ -107,13 +107,13 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("data", data);
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
+                if (this.readyState == 4) {
                     document.getElementById("status").innerHTML =
                         this.responseText;
                 }
             };
-            xhttp.open("POST", "http://localhost:3000/api/urls" + sessionId, true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.open("POST", "http://localhost:3000/api/urls/" + sessionId, true);
+            xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(JSON.stringify(data));
 
         });
