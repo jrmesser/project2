@@ -96,23 +96,29 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("submit").addEventListener("click", function() {
         console.log("submitting");
         var sessionId;
-        chrome.cookies.get({url: "http://localhost:3000/", name: "sessionId"}, function(cookie) {
+        chrome.cookies.get({url: "https://damp-stream-82977.herokuapp.com/", name: "sessionId"}, function(cookie) {
             sessionId = cookie.value;
             var data = {};
             data.url = document.getElementById("url").value;
             data.content_type = document.getElementById("content_type").value;
             data.length = document.getElementById("length").value;
             data.category = document.getElementById("category").value;
-            console.log("sessionId:", sessionId);
-            console.log("data", data);
+//            console.log("sessionId:", sessionId);
+//            console.log("data", data);
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
-                if (this.readyState == 4) {
-                    document.getElementById("status").innerHTML =
-                        this.responseText;
+                console.log("in readystatechange function");
+                console.log(this);
+                if (this.readyState == 4 && this.status == 403) {
+                    document.getElementById("status").innerHTML = "There was an issue. Please try logging in again.";
+                    console.log(this.responseText);
+                }
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("status").innerHTML = "Saved it!";
+                    console.log(this.responseText);
                 }
             };
-            xhttp.open("POST", "http://localhost:3000/api/urls/" + sessionId, true);
+            xhttp.open("POST", "https://damp-stream-82977.herokuapp.com/api/urls/" + sessionId, true);
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(JSON.stringify(data));
 
@@ -121,12 +127,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   getCurrentTabUrl(function(url) {
     // Put the image URL in Google search.
-    renderStatus('Performing Google Image search for ' + url);
 
     getImageUrl(url, function(imageUrl, width, height) {
 
-      renderStatus('Search term: ' + url + '\n' +
-          'Google image search result: ' + imageUrl);
       var imageResult = document.getElementById('image-result');
       // Explicitly set the width/height to minimize the number of reflows. For
       // a single image, this does not matter, but if you're going to embed
@@ -138,7 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
       imageResult.hidden = false;
 
     }, function(errorMessage) {
-      renderStatus('Cannot display image. ' + errorMessage);
     });
   });
 });
