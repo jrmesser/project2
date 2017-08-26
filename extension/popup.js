@@ -27,7 +27,7 @@ function getCurrentTabUrl(callback) {
 
     // A tab is a plain object that provides information about the tab.
     // See https://developer.chrome.com/extensions/tabs#type-Tab
-    var url = tab.url;
+      var url = tab.url;
 
     // tab.url is only available if the "activeTab" permission is declared.
     // If you want to see the URL of other tabs (e.g. after removing active:true
@@ -90,10 +90,35 @@ function getImageUrl(searchTerm, callback, errorCallback) {
 }
 
 function renderStatus(statusText) {
-  document.getElementById('status').textContent = statusText;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("submit").addEventListener("click", function() {
+        console.log("submitting");
+        var sessionId;
+        chrome.cookies.get({url: "http://localhost:3000/", name: "sessionId"}, function(cookie) {
+            sessionId = cookie.value;
+            var data = {};
+            data.url = document.getElementById("url").value;
+            data.content_type = document.getElementById("content_type").value;
+            data.length = document.getElementById("length").value;
+            data.category = document.getElementById("category").value;
+            console.log("sessionId:", sessionId);
+            console.log("data", data);
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                    document.getElementById("status").innerHTML =
+                        this.responseText;
+                }
+            };
+            xhttp.open("POST", "http://localhost:3000/api/urls/" + sessionId, true);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send(JSON.stringify(data));
+
+        });
+    });
+
   getCurrentTabUrl(function(url) {
     // Put the image URL in Google search.
     renderStatus('Performing Google Image search for ' + url);
@@ -117,3 +142,36 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// //import scrape from 'html-metadata';
+// import wordCount from 'html-word-count';
+
+// var scrape_data = function(tab, callback){
+//     var html;
+
+//     chrome.pageCapture.saveAsMHTML(tab.id, function (mhtmlData) {
+//         console.log(mhtmlData); 
+//     });
+
+//     scrape(url).then(metadata => {
+//         var urlObject = {url: url};
+//         urlObject.content_type = metadata.openGraph.type || "Website";
+//         urlObject.category = metadata.jsonLd["@type"] || "Web page";
+
+//         getLength(url, function(length) {
+//             urlObject.length = length;
+//             console.log(urlObject);
+//         });
+//     });
+// };
+
+// function getLength(url, callback) {
+//     request(url, function (error, response, body) {
+//         //        console.log('error:', error); // Print the error if one occurred
+//         const count = wordCount(body);
+//         // adults read about 200 wpm according to https://www.irisreading.com/the-average-reading-speed/
+//         const rate = 200;
+//         callback(parseInt(Math.ceil(count/rate)));
+//     });
+// };
+
