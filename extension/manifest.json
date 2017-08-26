@@ -14,6 +14,6 @@
       "pageCapture",
       "https://ajax.googleapis.com/",
       "cookies",
-      "http://localhost:3000/"
+      "https://damp-stream-82977.herokuapp.com/"
   ]
 }
