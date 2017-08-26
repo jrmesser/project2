@@ -1,23 +1,20 @@
-
 var db = require("../models");
 
 module.exports = function(app) {
 
 // GET route to get session ID
   app.get("/api/urls/:pw", function(req, res) {
-    db.Url.findAll({
-      include: [db.url],
-        where: {
-          sessionId: req.params.pw
-        }
-    }).then(function(dbUser) {
-      res.json(dbUser);
-    });
+      db.user.findAll({
+          include: [{model: db.url}],
+          where: {sessionId: req.params.pw}
+      }).then(function(dbUser) {
+          res.json(dbUser);
+      });
   });
 
 // POST route to get all the URLs for the session ID
   app.post("/api/urls/:pw", function(req, res) {
-    db.Url.create(req.body).then(function(dbUser) {
+    db.url.create(req.body).then(function(dbUser) {
       res.json(dbUser);
     });
   });
@@ -33,23 +30,18 @@ module.exports = function(app) {
   // });
 
   // GET route for filtering by length
-    app.get("/api/urls/:pw/length", function(req, res) {
+    app.get("/api/urls/:pw/:length", function(req, res) {
       db.url.findAll({
-        include: [db.url],
-          where: {
-            sessionId: req.params.pw,
-            length: {
-              $lt: {
-              length
-            }
-          }
-        }
+          include: [{model: db.url}],
+          where: {sessionId: req.params.pw,
+                  length: {$lt: req.params.length}
+                 }
       }).then(function(dbUser) {
         res.json(dbUser);
       });
     });
 
-  // POST route to get all the URLs for the session ID and length
+  // POST route to get all the URLs for thex session ID and length
       app.post("/api/urls/:pw/:length", function(req, res) {
         db.User.create(req.body).then(function(dbUser) {
           res.json(dbUser);
