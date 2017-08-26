@@ -43,7 +43,7 @@ module.exports = function(app) {
   // });
 
 
-  // POST route to get all the URLs for thex session ID and length
+  // POST route to get all the URLs for the session ID and length
       app.post("/api/urls/:pw/:length", function(req, res) {
         db.User.create(req.body).then(function(dbUser) {
           res.json(dbUser);
