@@ -52,6 +52,8 @@ body, html {height: 100%}
         <hr class="w3-clear">
 </div>
 
+<div class="w3-container" id="articles" >
+</div>
 
 <!-- Article preview 1-->
 
@@ -206,26 +208,27 @@ body, html {height: 100%}
 
 <!-- Button/ Minutes Modal -->
 
-<div id="button_minutes" class="w3-modal">
+<div id="button_minutes" class="w3-modal" style="display: block" >
     <div class="w3-modal-content w3-animate-zoom">
-        <div class="w3-container w3-black">
-            <span  class="w3-button w3-display-topmiddle w3-large">HOW MUCH TIME DO YOU HAVE?</span>
+        <div class="w3-container w3-margin">
+            <span  class="w3-display-topmiddle w3-large w3-black w3-margin w3-padding">How much time do you have?</span>
             
         </div>
+        <div class="w3-container w3-padding-64">
 
-        <button onclick="document.getElementById('  ').style.display='block'" class="w3-display-right w3-button w3-grey"> +25 minutes</button>
+            <button onclick="javascript:displayArticles(60)" class="w3-display-right w3-button w3-grey w3-margin"> +25 minutes</button>
+            <button onclick="javascript:displayArticles(25)" class=" w3-display-middle w3-button w3-grey w3-margin"> 11-25 minutes</button>
+            <button onclick="javscript:displayArticles(10)" class=" w3-display-left w3-button w3-grey w3-margin"> 0-10 minutes</button>
 
-        <p><button onclick="document.getElementById('  ').style.display='block'" class=" w3-display-middle w3-button w3-grey"> 11-25 minutes</button></p>
-
-        <p><button onclick="document.getElementById('  ').style.display='block'" class=" w3-display- w3-button w3-grey"> 0-10 minutes</button></p>
-
-        
+        </div>
        
    </div>
 
 
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="js/js.cookie.js"></script>
 <script src="js/login.js"></script>
 <script src="js/createUser.js"></script>
+<script src="js/displayArticles.js"></script>
 </html>
